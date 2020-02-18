@@ -1,0 +1,38 @@
+pipeline{
+//    def mvnHome= tool name: 'mymaven', type: 'maven'
+   agent any
+      tools{
+//       maven 'mymaven'
+       jdk 'myjava'
+      }
+      stages{
+        stage('code checkout') {
+           steps{
+             git 'https://github.com/yogi086/code.git'
+           }
+        }
+        stage('code compile'){
+            steps{
+    //            sh "${$mvnhome}/bin/mvn compile"
+                  sh 'mvn compile'
+            }    
+        }
+        stage('package'){
+            steps{
+            sh 'mvn package'
+            sh "whoami"
+            }
+        }
+        stage('create docker image'){
+            steps{
+                echo "building docker image"
+                sh 'docker build -t addressbook:v1.0 -f ./Dockerfile .'
+            }
+        }
+        stage('List Docker images')
+        {
+            steps{
+            sh 'docker images'
+        }}
+    }
+}
