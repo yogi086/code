@@ -417,11 +417,6 @@
             </build>
             <reporting>
                 <plugins>
-		    <plugin>
-     			<groupId>org.jacoco</groupId>
-  			<artifactId>jacoco-maven-plugin</artifactId>
-  			<version>3.0.5-SNAPSHOT</version>
-		    </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>cobertura-maven-plugin</artifactId>
